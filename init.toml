@@ -1,0 +1,103 @@
+#=============================================================================
+# basic.toml --- basic configuration example for SpaceVim
+# Copyright (c) 2016-2021 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "gruvbox"
+    colorscheme_bg = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "nil"
+    statusline_iseparator = "bar"
+    buffer_index_type = 4
+    windows_index_type = 3
+    enable_tabline_filetype_icon = false
+    enable_statusline_mode = false
+    statusline_unicode_symbols = false
+    # Enable vim compatible mode, avoid changing origin vim key bindings
+    vimcompatible = true
+    autocomplete_method = "coc"
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto_completion_return_key_behavior = "complete"
+auto_completion_tab_key_behavior = "cycle"
+auto_completion_enable_snippets_in_popup = true
+
+[[layers]]
+name = 'shell'
+default_position = 'top'
+default_height = 30
+[layers.override_cmd]
+
+
+[[layers]]
+  name = "lang#python"
+
+[[layers]]
+  name = "lang#csharp"
+  highlight_types = 0
+
+[[layers]]
+  name = "lsp"
+  filetypes = [
+        "javascript",
+        "python",
+        "html",
+        "css"
+      ]
+
+  [layers.override_cmd]
+    javascript = ['javascript-typescript-stdio']
+    python = ['pyls']
+    html = ['html-languageserver', '--stdio']
+    css = ['css-languageserver', '--stdio']
+
+# custom plugins {{{
+[[custom_plugins]]
+name = 'cespare/vim-toml'
+merged = 0
+# }}}
+
+[[custom_plugins]]
+name = 'ryanoasis/vim-devicons'
+merged = 0
+
+[[custom_plugins]]
+name = 'lithammer/nvim-pylance'
+merged = 0
+
+[[custom_plugins]]
+name = 'plytophogy/vim-virtualenv'
+merged = 0
+
+[[custom_plugins]]
+name = 'chrisbra/vim-autosave'
+merged = 0
+
+[[custom_plugins]]
+name = 'OmniSharp/omnisharp-vim'
+merged = 0
+
+[[custom_plugins]]
+pipenv = 'PieterjanMontens/vim-pipenv'
+merged = 0
+
+[[custom_plugins]]
+name = 'fatih/vim-go' 
+merged = 0
+[[layers]]
+  name = "tmux"
+    tmux_navigator_modifier = "alt"

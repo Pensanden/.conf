@@ -112,10 +112,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: 'Borg Sans Mono' 
+    family: 'DejaVu Sans Mono Nerd Font' 
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Regular
 
   # Bold font face
   #bold:
@@ -187,17 +187,36 @@ font:
 
 # Colors (Tomorrow Night Bright)
 colors:
-  # Default colors
-  primary:
-    background: '0x222222'
-    foreground: '0xeeeeee'
+  #   Default colors
+ primary:
+   background: '0x282828'
+   foreground: '0xdfbf8e'
+    
+ normal:
+   black:   '0x665c54'
+   red:     '0xea6962'
+   green:   '0xa9b665'
+   yellow:  '0xe78a4e'
+   blue:    '0x7daea3'
+   magenta: '0xd3869b'
+   cyan:    '0x89b482'
+   white:   '0xdfbf8e'
+
+ bright:
+   black:   '0x928374'
+   red:     '0xea6962'
+   green:   '0xa9b665'
+   yellow:  '0xe3a84e'
+   blue:    '0x7daea3'
+   magenta: '0xd3869b'
+   cyan:    '0x89b482'
+   white:   '0xdfbf8e'
 
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not present.
     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
     # is `false`, the normal foreground color will be used.
-    dim_foreground: '0x666666'
     #bright_foreground: '0xffffff'
 
   # Cursor colors
@@ -218,26 +237,26 @@ colors:
   #  background: '0x404040'
 
   # Normal colors
-  normal:
-    black:   '0x222222'
-    red:     '0xde4949'
-    green:   '0x30b06e'
-    yellow:  '0xffb937'
-    blue:    '0x3352e1'
-    magenta: '0x533354'
-    cyan:    '0x5a7d8b'
-    white:   '0xeeeeee'
+  #  normal:
+  # black:   '0x222222'
+  # red:     '0xde4949'
+  # green:   '0x30b06e'
+  #  yellow:  '0xffb937'
+  # blue:    '0x3352e1'
+  # magenta: '0x533354'
+  # cyan:    '0x5a7d8b'
+  # white:   '0xeeeeee'
 
   # Bright colors
-  bright:
-    black:   '0x666666'
-    red:     '0x490b0b'
-    green:   '0x164f31'
-    yellow:  '0xffff00'
-    blue:    '0x0037ff'
-    magenta: '0xa968ab'
-    cyan:    '0x4891ae'
-    white:   '0xffffff'
+  # bright:
+  # black:   '0x666666'
+  # red:     '0x490b0b'
+  # green:   '0x164f31'
+  # yellow:  '0xffff00'
+  # blue:    '0x0037ff'
+  # magenta: '0xa968ab'
+  # cyan:    '0x4891ae'
+  # white:   '0xffffff'
 
   # Dim colors
   #

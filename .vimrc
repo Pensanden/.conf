@@ -6,7 +6,7 @@ set noswapfile
 set encoding=UTF-8
 set belloff=all
 set nowritebackup
-"set termguicolors
+set termguicolors
 
 syntax on
 
@@ -34,6 +34,16 @@ Plug 'sheerun/vim-polyglot'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+
+
+"Python"
+Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'tweekmonster/django-plus.vim'
+
 
 call plug#end()
 
@@ -52,6 +62,9 @@ let g:airline_left_sep = ""
 
 let mapleader = " "
 
+"Control-P"
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 nnoremap <leader><CR> :so ~/.vimrc<CR>
 
@@ -94,8 +107,8 @@ let g:indentLine_setColors = 1
 "LSP Shortcuts
 
 nnoremap <leader>d :LspHover<CR>
-
-
+nnoremap <F2> :LspRename<CR>
+nnoremap <C-K> :LspNextError<CR>
 "OmniSharp Configurations
 "Show type information automatically when the cursor stops moving.
 "Note that the type is echoed to the Vim command line, and will overwrite
@@ -104,6 +117,7 @@ nnoremap <leader>d :LspHover<CR>
 autocmd FileType cs  nnoremap <leader>d :OmniSharpDocumentation<CR>
 autocmd FileType cs  nnoremap <C-]>  :OmniSharpFindImplementations<CR>
 
+nnoremap  <C-.> :CocAction<CR>
 
 " Asyncomplete: {{{
  let g:asyncomplete_auto_popup = 1
@@ -147,4 +161,29 @@ au User lsp_setup call lsp#register_server({
     \ 'whitelist': ['php'],
     \ })
 
+"PEP8 Compliance Configurations"
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+"Unnecessary Whitespace Flag"
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
+"Virtual Enviroment Support"
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"Python Config"
+let python_highlight_all=1
+let NERDTreeIgnore=['\.pyc$', '\~$'] 
+syntax on

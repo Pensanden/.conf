@@ -6,6 +6,7 @@ set noswapfile
 set encoding=UTF-8
 set belloff=all
 set nowritebackup
+set background=dark
 set termguicolors
 
 syntax on
@@ -32,14 +33,14 @@ Plug 'junegunn/fzf', { 'do' : { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'puremourning/vimspector'
 
 
 "Python"
 Plug 'vim-scripts/indentpython.vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
 Plug 'tweekmonster/django-plus.vim'
@@ -59,7 +60,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_right_sep = ""
 let g:airline_left_sep = ""
 
-
 let mapleader = " "
 
 "Control-P"
@@ -76,7 +76,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 "Auto run NT
-autocmd VimEnter *  NERDTree | wincmd p
+"autocmd VimEnter *  NERDTree | wincmd p
 
 "Enter NT if no file is specified
 autocmd StdinReadPre * let s:std_in=1
@@ -109,15 +109,18 @@ let g:indentLine_setColors = 1
 nnoremap <leader>d :LspHover<CR>
 nnoremap <F2> :LspRename<CR>
 nnoremap <C-K> :LspNextError<CR>
-"OmniSharp Configurations
 "Show type information automatically when the cursor stops moving.
 "Note that the type is echoed to the Vim command line, and will overwrite
 "any other messages in this space including e.g. ALE linting messages.
 
+nnoremap  <C-.> :CocAction<CR>
+
 autocmd FileType cs  nnoremap <leader>d :OmniSharpDocumentation<CR>
 autocmd FileType cs  nnoremap <C-]>  :OmniSharpFindImplementations<CR>
+autocmd FileType cs  nnoremap <C-m>  :OmniSharpGetCodeActions<CR>
 
-nnoremap  <C-.> :CocAction<CR>
+autocmd FileType cs  nnoremap <C-n>  :OmniSharpFixUsings<CR>
+
 
 " Asyncomplete: {{{
  let g:asyncomplete_auto_popup = 1
@@ -162,7 +165,7 @@ au User lsp_setup call lsp#register_server({
     \ })
 
 "PEP8 Compliance Configurations"
-au BufNewFile,BufRead *.py
+autocmd FileType py
     \ set tabstop=4
     \ set softtabstop=4
     \ set shiftwidth=4
@@ -170,20 +173,8 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set autoindent
     \ set fileformat=unix
-"Unnecessary Whitespace Flag"
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-"Virtual Enviroment Support"
-py3 << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
 
 "Python Config"
 let python_highlight_all=1
 let NERDTreeIgnore=['\.pyc$', '\~$'] 
-syntax on

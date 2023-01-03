@@ -178,3 +178,20 @@ autocmd FileType py
 "Python Config"
 let python_highlight_all=1
 let NERDTreeIgnore=['\.pyc$', '\~$'] 
+
+
+function InstallCocLsps()
+    let coc_lsps = [
+      \'coc-markdownlint',
+      \'coc-highlight',
+      \'coc-go',
+      \'coc-python',
+      \'coc-json', 
+      \'coc-git'
+      \'coc-vimlsp'
+      \]
+
+    for lsp in coc_lsps
+        execute (':CocInstall '.lsp)
+    endfor 
+endfunction
